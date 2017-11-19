@@ -4,8 +4,10 @@
   "description": "In this exercise, you have to implement a website that uses a RESTful Web API in the background. You have to create the website from scratch without any initial templates to build on. Feel free to use prior homeworks or samples from the course material as a starting point.",
   "main": "app.js",
   "scripts": {
-    "build": "tsc --watch",
-    "start": "browser-sync start --server --files='*.css,*.html,*.js'"
+    "copy-bootstrap": "cpx ./node_modules/bootstrap/dist/css/bootstrap.css dist/ && cpx ./node_modules/bootstrap/dist/js/bootstrap.js dist/",
+    "copy-jquery": "cpx ./node_modules/jquery/dist/jquery.js dist/",
+    "build": "tsc && cpx *.{html,css,js} dist/ && npm run copy-bootstrap && npm run copy-jquery",
+    "start": "browser-sync start -c bs-config.js"
   },
   "author": "Michael Hinterdorfer",
   "license": "ISC",
@@ -18,6 +20,9 @@
   },
   "homepage": "https://github.com/MHinterdorfer/pokelist-quiz-4ahif-MHinterdorfer#readme",
   "dependencies": {
-    "@types/jquery": "^3.2.16"
+    "@types/jquery": "^3.2.16",
+    "browser-sync": "^2.18.13",
+    "cpx": "^1.5.0",
+    "typescript": "^2.5.3"
   }
 }
