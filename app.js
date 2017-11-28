@@ -6,6 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+let offset = 0;
 $(document).ready(function () {
     $('.pokedetails').hide();
     listPokemons();
@@ -19,16 +20,16 @@ $(document).ready(function () {
         goBack();
     });
 });
-let offset = 0;
 function listPokemons() {
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
             const pokelist = yield $.get('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=' + offset);
             let html = '';
             for (const pokemon of pokelist.results) {
-                html += `<tr> <td> ${pokemon.name} </td> <td> <button type="button" onclick="listDetails('${pokemon.url}')">Details</button> </td> </tr>`;
+                html += `<tr> <td> ${pokemon.name} </td> <td> <button class="btn btn-info" type="button" onclick="listDetails('${pokemon.url}')">Details</button> </td> </tr>`;
             }
             $('#resultBody')[0].innerHTML = html;
+            document.documentElement.scrollTop = 0; //Jump on top of the page
         });
     })();
 }
@@ -40,11 +41,11 @@ function listDetails(url) {
             html += `<tr><td>Name:</td> <td> ${pokemonDetails.name} </td> </tr>`;
             html += `<tr><td>Image:</td> <td><img src="${pokemonDetails.sprites.front_default}"</td></tr>`;
             html += `<tr><td>Weight:</td> <td>${pokemonDetails.weight}</td></tr>`;
-            html += `<tr><td>Abilities:</td> <td> <ul>`;
+            html += `<tr><td>Abilities:</td> <td>`;
             for (const ability of pokemonDetails.abilities) {
-                html += `<li> ${ability.ability.name} </li>`;
+                html += `${ability.ability.name} <br>`;
             }
-            html += `</ul></td></tr>`;
+            html += `</td></tr>`;
             $('#detailBody')[0].innerHTML = html;
             $('.pokelist').hide();
             $('.pokedetails').show();

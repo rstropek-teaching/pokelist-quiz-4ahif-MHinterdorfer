@@ -21,8 +21,10 @@
   "homepage": "https://github.com/MHinterdorfer/pokelist-quiz-4ahif-MHinterdorfer#readme",
   "dependencies": {
     "@types/jquery": "^3.2.16",
+    "bootstrap": "^3.3.7",
     "browser-sync": "^2.18.13",
     "cpx": "^1.5.0",
+    "jquery": "^3.2.1",
     "typescript": "^2.5.3"
   }
 }
